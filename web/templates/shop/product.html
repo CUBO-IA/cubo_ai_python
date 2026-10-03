@@ -1,0 +1,52 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>Simple Shop</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/cart/">Cart</a>
+      </nav>
+    </header>
+
+    <main>
+      {% if product %}
+
+      <div class="product-detail">
+        <img
+          src="{% static 'images/' %}{{ product.image }}"
+          alt="{{ product.name }}"
+        />
+
+        <div>
+          <h2>{{ product.name }}</h2>
+          <p class="price">${{ product.price }}</p>
+          <p>{{ product.description }}</p>
+
+          <button
+            onclick="addToCart('{{ product.name }}', '{{ product.image }}')"
+          >
+            Add to cart
+          </button>
+        </div>
+      </div>
+
+      {% else %}
+
+      <h2>Product not found</h2>
+      <a href="/">Back to shop</a>
+
+      {% endif %}
+    </main>
+
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
